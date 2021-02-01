@@ -1,3 +1,6 @@
+## [1.0.2] - February 01, 2021
+* Fixes dependency issues
+
 ## [1.0.1] - December 08, 2020
 * Stability improvements
 

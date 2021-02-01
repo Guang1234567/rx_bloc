@@ -1,5 +1,5 @@
-name: bloc_sample
-description: A new Flutter application.
+name: bloc_favorites_advanced
+description: RxBloc example app.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -24,8 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  widget_library:
-    path: ../widget_library
+  favorites_advanced_base:
+    path: ../favorites_advanced_base
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
