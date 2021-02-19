@@ -18,9 +18,9 @@ class GenerateRxBlocAction : AnAction(), GenerateRxBlocDialog.Listener {
         dialog.show()
     }
 
-    override fun onGenerateBlocClicked(blocName: String?, shouldUseEquatable: Boolean) {
+    override fun onGenerateBlocClicked(blocName: String?, shouldUseEquatable: Boolean, shouldAddExtension: Boolean) {
         blocName?.let { name ->
-            val generators = RxBlocGeneratorFactory.getBlocGenerators(name, shouldUseEquatable)
+            val generators = RxBlocGeneratorFactory.getBlocGenerators(name, shouldUseEquatable, shouldAddExtension)
             generate(generators)
         }
     }

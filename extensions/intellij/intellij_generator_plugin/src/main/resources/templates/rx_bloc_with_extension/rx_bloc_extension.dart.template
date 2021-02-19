@@ -1,0 +1,6 @@
+part of '${bloc_snake_case}_bloc.dart';
+
+extension _${bloc_pascal_case}StreamExtension on Stream<String> {
+
+    String toErrorMessage() => map((error) => error.toString());
+}

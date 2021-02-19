@@ -8,7 +8,7 @@ import java.lang.RuntimeException
 
 abstract class RxBlocGeneratorBase(private val name: String,
                                    withDefaultStates: Boolean,
-                                   templateName: String) {
+                                   templateName: String, withExtension: Boolean = false) {
 
     private val TEMPLATE_BLOC_DOLLAR_PASCAL_CASE = "bloc_dollar_pascal_case"
     private val TEMPLATE_BLOC_PASCAL_CASE = "bloc_pascal_case"
@@ -19,11 +19,21 @@ abstract class RxBlocGeneratorBase(private val name: String,
 
     init {
         templateValues = mutableMapOf(
-            TEMPLATE_BLOC_PASCAL_CASE to pascalCase(),
-            TEMPLATE_BLOC_DOLLAR_PASCAL_CASE to dolarPascalCase(),
-            TEMPLATE_BLOC_SNAKE_CASE to snakeCase()
+                TEMPLATE_BLOC_PASCAL_CASE to pascalCase(),
+                TEMPLATE_BLOC_DOLLAR_PASCAL_CASE to dolarPascalCase(),
+                TEMPLATE_BLOC_SNAKE_CASE to snakeCase()
         )
         try {
+            /*
+            var templateFolder = "rx_bloc"
+            if (withDefaultStates && withExtensionFile) {
+                templateFolder = "rx_bloc_with_default_states_with_and_extension"
+            } else if (!withDefaultStates && withExtensionFile) {
+                templateFolder = "rx_bloc_with_extension"
+            } else if (withDefaultStates && !withExtensionFile) {
+                templateFolder = "rx_bloc_with_default_states_with"
+            }
+             */
             val templateFolder = if (withDefaultStates) "rx_bloc_with_default_states" else "rx_bloc"
             val resource = "/templates/$templateFolder/$templateName.dart.template"
             val resourceAsStream = RxBlocGeneratorBase::class.java.getResourceAsStream(resource)

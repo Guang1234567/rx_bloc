@@ -10,6 +10,7 @@ public class GenerateRxBlocDialog extends DialogWrapper {
     private final Listener listener;
     private JTextField blocNameTextField;
     private JCheckBox withDefaultStates;
+    private JCheckBox withExtensionFile;
     private JPanel contentPanel;
 
     public GenerateRxBlocDialog(final Listener listener) {
@@ -27,7 +28,11 @@ public class GenerateRxBlocDialog extends DialogWrapper {
     @Override
     protected void doOKAction() {
         super.doOKAction();
-        this.listener.onGenerateBlocClicked(blocNameTextField.getText(), withDefaultStates.isSelected());
+        this.listener.onGenerateBlocClicked(
+                blocNameTextField.getText(),
+                withDefaultStates.isSelected(),
+                withExtensionFile.isSelected()
+        );
     }
 
     @Nullable
@@ -37,6 +42,6 @@ public class GenerateRxBlocDialog extends DialogWrapper {
     }
 
     public interface Listener {
-        void onGenerateBlocClicked(String blocName, boolean shouldUseEquatable);
+        void onGenerateBlocClicked(String blocName, boolean shouldAddDefaultStates, boolean shouldAddExtension);
     }
 }
