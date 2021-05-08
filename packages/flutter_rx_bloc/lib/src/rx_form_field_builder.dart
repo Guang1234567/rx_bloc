@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
 import 'package:flutter_rx_bloc/src/rx_field_exception.dart';
-import 'package:rx_bloc/rx_bloc.dart';
+
+//import 'package:rx_bloc/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'rx_text_form_field_builder.dart';
 
-typedef RxFormFieldState<B extends RxBlocTypeBase, T> = Stream<T> Function(B);
+typedef RxFormFieldState<B, T> = Stream<T> Function(B);
 
-typedef RxFormFieldShowError<B extends RxBlocTypeBase> = Stream<bool> Function(
-    B);
+typedef RxFormFieldShowError<B> = Stream<bool> Function(B);
 
-typedef RxFormFieldOnChanged<B extends RxBlocTypeBase, T> = void Function(B, T);
+typedef RxFormFieldOnChanged<B, T> = void Function(B, T);
 
-typedef RxFormFieldBuilderFunction<B extends RxBlocTypeBase, T>
-    = Widget Function(
-        RxFormFieldBuilderState<B, T, RxFormFieldBuilder<B, T>> fieldState);
+typedef RxFormFieldBuilderFunction<B, T> = Widget Function(
+    RxFormFieldBuilderState<B, T, RxFormFieldBuilder<B, T>> fieldState);
 
 ///   [RxFormFieldBuilder] is a convenience widget,
 /// which makes it easier to build and update responsive form fields
@@ -145,7 +144,7 @@ typedef RxFormFieldBuilderFunction<B extends RxBlocTypeBase, T>
 ///         ),
 ///      );
 ///  ```
-class RxFormFieldBuilder<B extends RxBlocTypeBase, T> extends StatefulWidget {
+class RxFormFieldBuilder<B, T> extends StatefulWidget {
   ///The default constructor
   const RxFormFieldBuilder({
     required this.state,
@@ -200,8 +199,8 @@ class RxFormFieldBuilder<B extends RxBlocTypeBase, T> extends StatefulWidget {
 /// showing errors to the user.
 ///
 ///   !The showErrorState stream must never emmit an error
-class RxFormFieldBuilderState<B extends RxBlocTypeBase, T,
-    R extends RxFormFieldBuilder<B, T>> extends State<R> {
+class RxFormFieldBuilderState<B, T, R extends RxFormFieldBuilder<B, T>>
+    extends State<R> {
   late B _bloc;
   late Stream<T?> _blocState;
   late Stream<bool> _showErrorState;

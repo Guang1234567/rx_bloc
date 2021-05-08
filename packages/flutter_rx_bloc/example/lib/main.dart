@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       home: RxBlocProvider<CounterBlocType>(
         create: (ctx) => CounterBloc(CounterRepository()),
+        dispose: (ctx, counterBloc) => counterBloc.dispose(),
         child: const HomePage(),
       ),
     );

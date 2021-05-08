@@ -1,7 +1,7 @@
 part of 'rx_form_field_builder.dart';
 
-typedef RxTextFormFieldBuilderFunction<B extends RxBlocTypeBase> = Widget
-    Function(RxTextFormFieldBuilderState<B> fieldState);
+typedef RxTextFormFieldBuilderFunction<B> = Widget Function(
+    RxTextFormFieldBuilderState<B> fieldState);
 
 ///   [RxTextFormFieldBuilder] is a [RxFormFieldBuilder] which specializes
 /// in building text form fields with reactive streams, it handles the most
@@ -94,8 +94,7 @@ typedef RxTextFormFieldBuilderFunction<B extends RxBlocTypeBase> = Widget
 ///        ),
 ///      );
 ///  ```
-class RxTextFormFieldBuilder<B extends RxBlocTypeBase>
-    extends RxFormFieldBuilder<B, String> {
+class RxTextFormFieldBuilder<B> extends RxFormFieldBuilder<B, String> {
   ///The default constructor
   RxTextFormFieldBuilder({
     required RxFormFieldState<B, String> state,
@@ -149,7 +148,7 @@ class RxTextFormFieldBuilder<B extends RxBlocTypeBase>
 /// [RxTextFormFieldBuilderState] is the state provided to the widget's
 /// builder function. It provides the same fields as [RxFormFieldBuilderState],
 /// as well as some additional ones for managing text field states.
-class RxTextFormFieldBuilderState<B extends RxBlocTypeBase>
+class RxTextFormFieldBuilderState<B>
     extends RxFormFieldBuilderState<B, String, RxTextFormFieldBuilder<B>> {
   late bool _shouldDisposeController;
   late TextEditingController _controller;

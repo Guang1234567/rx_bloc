@@ -12,7 +12,7 @@ import 'rx_bloc_provider.dart';
 ///
 ///   * [StreamBuilder], which delegates to an [AsyncWidgetBuilder] to build
 ///     itself based on a snapshot from interacting with a [Stream].
-class RxResultBuilder<B extends RxBlocTypeBase, T> extends StatelessWidget {
+class RxResultBuilder<B, T> extends StatelessWidget {
   /// The default constructor.
   const RxResultBuilder({
     required this.state,

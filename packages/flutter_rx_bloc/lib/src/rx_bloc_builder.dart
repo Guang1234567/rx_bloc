@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:rx_bloc/rx_bloc.dart';
+//import 'package:rx_bloc/rx_bloc.dart';
 
 import 'rx_bloc_provider.dart';
 
-class RxBlocBuilder<B extends RxBlocTypeBase, T> extends StatelessWidget {
+class RxBlocBuilder<B, T> extends StatelessWidget {
   const RxBlocBuilder({
     required this.state,
     required this.builder,

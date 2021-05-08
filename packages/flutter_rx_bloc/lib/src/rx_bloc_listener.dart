@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:rx_bloc/rx_bloc.dart';
+//import 'package:rx_bloc/rx_bloc.dart';
 
 import 'rx_bloc_provider.dart';
 
@@ -77,8 +77,7 @@ typedef RxBlocListenerCondition<S> = bool Function(S? previous, S? current);
 /// )
 /// ```
 /// {@endtemplate}
-class RxBlocListener<B extends RxBlocTypeBase, S>
-    extends RxBlocListenerBase<B, S> {
+class RxBlocListener<B, S> extends RxBlocListenerBase<B, S> {
   /// {@macro RxBlocListener}
   const RxBlocListener({
     Key? key,
@@ -104,8 +103,7 @@ class RxBlocListener<B extends RxBlocTypeBase, S>
 /// The type of the state and what happens with each state change
 /// is defined by sub-classes.
 /// {@endtemplate}
-abstract class RxBlocListenerBase<B extends RxBlocTypeBase, S>
-    extends SingleChildStatefulWidget {
+abstract class RxBlocListenerBase<B, S> extends SingleChildStatefulWidget {
   /// {@macro RxBlocListenerBase}
   const RxBlocListenerBase({
     required this.listener,
@@ -148,7 +146,7 @@ abstract class RxBlocListenerBase<B extends RxBlocTypeBase, S>
       _RxBlocListenerBaseState<B, S>();
 }
 
-class _RxBlocListenerBaseState<B extends RxBlocTypeBase, S>
+class _RxBlocListenerBaseState<B, S>
     extends SingleChildState<RxBlocListenerBase<B, S>> {
   // ignore: cancel_subscriptions
   StreamSubscription<S?>? _subscription;

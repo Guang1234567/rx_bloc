@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:rx_bloc/rx_bloc.dart';
+//import 'package:rx_bloc/rx_bloc.dart';
 
 /// Used as a DI widget where an instance of a [bloc] can be provided
 /// to multiple widgets within a subtree.
@@ -15,11 +15,11 @@ import 'package:rx_bloc/rx_bloc.dart';
 /// ```dart
 /// RxBlocProvider(
 ///   create: (BuildContext context) => BlocA(),
+///   dispose: (BuildContext context, BlocA bloc) => bloc.dispose(),
 ///   child: ChildA(),
 /// );
 /// ```
-class RxBlocProvider<T extends RxBlocTypeBase>
-    extends SingleChildStatelessWidget {
+class RxBlocProvider<T> extends SingleChildStatelessWidget {
   /// Takes a [bloc] and a [child] which will have access to the [bloc]
   /// via `RxBlocProvider.of(context)`.
   /// When `RxBlocProvider.value` is used, the [bloc] will not be
@@ -39,11 +39,13 @@ class RxBlocProvider<T extends RxBlocTypeBase>
   /// );
   RxBlocProvider.value({
     required T value,
+    required Dispose<T> dispose,
     Key? key,
     Widget? child,
   }) : this._(
           key: key,
           create: (_) => value,
+          dispose: dispose,
           child: child,
         );
 
@@ -51,8 +53,8 @@ class RxBlocProvider<T extends RxBlocTypeBase>
   /// Used by the [RxBlocProvider] default and value constructors.
   RxBlocProvider._({
     required Create<T> create,
+    required Dispose<T> dispose,
     Key? key,
-    Dispose<T>? dispose,
     this.child,
     this.lazy,
   })  : _create = create,
@@ -62,13 +64,14 @@ class RxBlocProvider<T extends RxBlocTypeBase>
   /// {@macro blocprovider}
   RxBlocProvider({
     required Create<T> create,
+    required Dispose<T> dispose,
     Key? key,
     Widget? child,
     bool? lazy,
   }) : this._(
           key: key,
           create: create,
-          dispose: (_, bloc) => bloc.dispose(),
+          dispose: dispose,
           child: child,
           lazy: lazy,
         );
@@ -80,7 +83,7 @@ class RxBlocProvider<T extends RxBlocTypeBase>
   /// Defaults to `true`.
   final bool? lazy;
 
-  final Dispose<T>? _dispose;
+  final Dispose<T> _dispose;
 
   final Create<T> _create;
 
@@ -95,7 +98,7 @@ class RxBlocProvider<T extends RxBlocTypeBase>
   /// ```dart
   /// RxBlocProvider.of<BlocA>(context)
   /// ```
-  static T of<T extends RxBlocTypeBase?>(BuildContext context) {
+  static T of<T>(BuildContext context) {
     try {
       return Provider.of<T>(context, listen: false);
     } on ProviderNotFoundException catch (_) {
