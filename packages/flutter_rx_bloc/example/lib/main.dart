@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               listener: (context, errorMessage) =>
                   ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(errorMessage ?? 'Unknown error'),
+                  content: Text(errorMessage),
                   behavior: SnackBarBehavior.floating,
                 ),
               ),
