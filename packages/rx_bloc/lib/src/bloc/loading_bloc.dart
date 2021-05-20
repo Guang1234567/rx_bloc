@@ -42,11 +42,11 @@ class LoadingBloc extends $LoadingBloc {
             ? (_loadingCount.value ?? 0) + 1
             : (_loadingCount.value ?? 0) - 1)
         .bind(_loadingCount)
-        .disposedBy(_compositeSubscription);
+        .disposedBy(_compositeDisposer);
   }
 
   final _loadingCount = BehaviorSubject.seeded(0);
-  final _compositeSubscription = CompositeSubscription();
+  final _compositeDisposer = CompositeDisposer();
 
   @override
   Stream<bool> _mapToIsLoadingState() => _loadingCount

@@ -7,6 +7,7 @@ import '../model/result.dart';
 import 'loading_bloc.dart';
 
 part '../extensions.dart';
+part '../extensions_disposable.dart';
 
 // ignore: public_member_api_docs
 abstract class RxBlocTypeBase {
