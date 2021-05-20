@@ -14,7 +14,11 @@ dependencies:
   provider: ^5.0.0
 #  rx_bloc: ^2.0.0
   rx_bloc:
-    path: ../rx_bloc
+    git:
+      url: git@codeup.aliyun.com:5e967b4ef89c9700014a4d5b/SRAppGroup/rx_bloc.git
+      ref: e8c2f6629463d56b3c24cf255c6c4d6d09b6d427
+      path: packages/rx_bloc
+
   rxdart: ^0.26.0
 
 dev_dependencies:
@@ -22,9 +26,9 @@ dev_dependencies:
     sdk: flutter
   clean_coverage: ^0.0.3
 
-#dependency_overrides:
-#  rx_bloc:
-#    path: ../rx_bloc
+dependency_overrides:
+  rx_bloc:
+    path: ../rx_bloc
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
