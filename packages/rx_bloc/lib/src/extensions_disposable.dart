@@ -52,6 +52,10 @@ class CompositeDisposer with Disposable {
 
   @override
   void dispose() {
+    if (isDisposed) {
+      return;
+    }
+
     // ignore: avoid_function_literals_in_foreach_calls
     _disposableList.forEach((it) {
       if (!it.isDisposed) {
@@ -241,6 +245,9 @@ class RxValue<T> with Disposable {
 
   @override
   void dispose() {
+    if(isDisposed) {
+      return;
+    }
     _sink.close();
     super.dispose();
   }
